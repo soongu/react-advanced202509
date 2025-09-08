@@ -27,6 +27,9 @@ const CartProvider = ({children}) => {
 
   };
 
+  // 장바구니 삭제 함수
+  const handleRemoveToCartItem = () => {};
+
   // 모달을 열어주는 함수
   const handleShowCart = () => setCartIsShown(true);
 
@@ -39,7 +42,8 @@ const CartProvider = ({children}) => {
     openModal: handleShowCart,
     closeModal: handleHideCart,
     cartItems,
-    addToCartItem: handleAddToCartItem
+    addToCartItem: handleAddToCartItem,
+    removeToCartItem: handleRemoveToCartItem
   };
 
   return (
