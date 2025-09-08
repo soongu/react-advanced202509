@@ -8,7 +8,7 @@ const MealItemForm = ({id, onAddToCart}) => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    onAddToCart(inputRef.current.value);
+    onAddToCart(+inputRef.current.value);
   };
 
   return (
