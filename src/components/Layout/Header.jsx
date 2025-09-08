@@ -5,14 +5,14 @@ import HeaderCartButton from './HeaderCartButton';
 // 리액트 컴포넌트에서 정적 이미지 로딩
 import foodImage from '../../assets/img/meals.jpg';
 
-const Header = () => {
+const Header = ({ onShowCart }) => {
   const { header, 'main-image': mainImage } = styles;
 
   return (
     <>
       <header className={header}>
         <h1>ReactMeals</h1>
-        <HeaderCartButton />
+        <HeaderCartButton onShow={onShowCart} />
       </header>
       <div className={mainImage}>
         <img
