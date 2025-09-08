@@ -5,9 +5,12 @@ import CartContext from '../../context/cart-context.js';
 
 const HeaderCartButton = () => {
 
-  const { openModal } = useContext(CartContext);
+  const { openModal, cartItems } = useContext(CartContext);
 
   const { button, icon, badge } = styles;
+
+  // 카트 배열에 있는 amount의 총합
+  const numberOfCart = cartItems.reduce((acc, curr) => acc + curr.amount, 0);
 
   return (
     <button className={button} onClick={openModal}>
@@ -15,7 +18,7 @@ const HeaderCartButton = () => {
         <CartIcon />
       </span>
       <span>My Cart</span>
-      <span className={badge}>3</span>
+      <span className={badge}>{numberOfCart}</span>
     </button>
   );
 };
