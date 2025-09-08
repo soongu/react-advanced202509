@@ -28,7 +28,24 @@ const CartProvider = ({children}) => {
   };
 
   // 장바구니 삭제 함수
-  const handleRemoveToCartItem = () => {};
+  const handleRemoveToCartItem = (id) => {
+    // 장바구니에서 항목의 수량을 1 내리거나 수량이 1일 경우 삭제하는 기능
+    // 원본배열 복사
+    const existingItems = [...cartItems];
+    // 삭제 타겟 객체를 탐색
+    const foundItem = existingItems.find(item => item.id === id);
+
+    if (foundItem.amount === 1) { // 배열에서 제거
+      setCartItems(existingItems.filter(item => item.id !== id));
+    } else { // 수량과 총액을 조정
+      // 1개의 가격 구하기
+      const eachPrice = foundItem.price / foundItem.amount;
+      foundItem.amount--;
+      foundItem.price -= eachPrice;
+      setCartItems(existingItems);
+    }
+
+  };
 
   // 모달을 열어주는 함수
   const handleShowCart = () => setCartIsShown(true);
