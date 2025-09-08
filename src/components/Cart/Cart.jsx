@@ -16,6 +16,7 @@ const DUMMY_CART = [
     amount: 1,
     price: 12000,
   },
+
 ];
 const Cart = () => {
 
