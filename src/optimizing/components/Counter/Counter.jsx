@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useCallback, useState} from 'react';
 
 import IconButton from '../UI/IconButton';
 import MinusIcon from '../UI/Icons/MinusIcon';
@@ -30,13 +30,13 @@ const Counter = ({ initialCount }) => {
 
   const [counter, setCounter] = useState(initialCount);
 
-  const decrementHandler = () => {
+  const decrementHandler = useCallback(() => {
     setCounter((prevCounter) => prevCounter - 1);
-  };
+  }, []);
 
-  const incrementHandler = () => {
+  const incrementHandler = useCallback(() => {
     setCounter((prevCounter) => prevCounter + 1);
-  };
+  }, []);
 
   return (
     <section className='counter'>
