@@ -5,6 +5,7 @@ import MinusIcon from '../UI/Icons/MinusIcon';
 import PlusIcon from '../UI/Icons/PlusIcon';
 import CounterOutput from './CounterOutput';
 import { log } from '../../log';
+import CounterHistory from './CounterHistory.jsx';
 
 const isPrime = (number) => {
   log('Calculating if is prime number', 2, 'other');
@@ -28,15 +29,21 @@ const Counter = ({ initialCount }) => {
 
   const initialCountIsPrime = isPrime(initialCount);
 
-  const [counter, setCounter] = useState(initialCount);
+  // 카운트의 변화를 배열로 추적
+  const [counterChanges, setCounterChanges] = useState([initialCount]);
+
+  // const [counter, setCounter] = useState(initialCount);
 
   const decrementHandler = useCallback(() => {
-    setCounter((prevCounter) => prevCounter - 1);
+    setCounterChanges(prev => [-1, ...prev]);
   }, []);
 
   const incrementHandler = useCallback(() => {
-    setCounter((prevCounter) => prevCounter + 1);
+    setCounterChanges(prev => [1, ...prev]);
   }, []);
+
+  // 현재 카운트 로그배열의 총합
+  const totalCount = counterChanges.reduce((acc, curr) => acc + curr, 0);
 
   return (
     <section className='counter'>
@@ -50,13 +57,16 @@ const Counter = ({ initialCount }) => {
           onClick={decrementHandler}>
           Decrement
         </IconButton>
-        <CounterOutput value={counter} />
+        <CounterOutput value={totalCount} />
         <IconButton
           icon={PlusIcon}
           onClick={incrementHandler}>
           Increment
         </IconButton>
       </p>
+
+      <CounterHistory history={counterChanges} />
+
     </section>
   );
 };
