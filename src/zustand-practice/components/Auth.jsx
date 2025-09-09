@@ -1,10 +1,13 @@
 import styles from './Auth.module.scss';
+import {useAuthStore} from '../store/authStore.js';
 
 const Auth = () => {
 
+  const {login} = useAuthStore();
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    login();
   };
 
   return (
