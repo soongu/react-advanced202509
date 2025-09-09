@@ -25,6 +25,7 @@ const isPrime = (number) => {
 
 const Counter = ({ initialCount }) => {
   log('<Counter /> rendered', 1);
+
   const initialCountIsPrime = isPrime(initialCount);
 
   const [counter, setCounter] = useState(initialCount);
@@ -59,4 +60,4 @@ const Counter = ({ initialCount }) => {
     </section>
   );
 };
-export default Counter;
+export default React.memo(Counter);
